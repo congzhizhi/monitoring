@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="application.properties" />
+    <environments default="dev">
+        <environment id="dev">
+            <transactionManager type="JDBC"/>
+            <dataSource type="com.caecc.netty.xian_26.shentong.c3p0DataSourceFactory">
+                <property name="driverClass" value="${spring.datasource.driver-class-name}"/>
+                <property name="jdbcUrl"  value="${spring.datasource.url}"/>
+                <property name="user" value="${spring.datasource.username}"/>
+                <property name="password" value="${spring.datasource.password}"/>
+                <property name="initialPoolSize" value="5"/>
+                <property name="maxPoolSize" value="20"/>
+                <property name="minPoolSize" value="5"/>
+
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mapper/IWorkParam.xml"/>
+    </mappers>
+</configuration>

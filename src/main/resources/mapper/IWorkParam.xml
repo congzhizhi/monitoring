@@ -3,7 +3,7 @@
 
 
 
-<mapper namespace="com.caecc.dao.IWorkParamDao">
+<mapper namespace="com.caecc.dao.WorkParamDao">
 
     <resultMap id="workparamMap" type="com.caecc.model.WorkParam">
         <id property="id" column="id" />

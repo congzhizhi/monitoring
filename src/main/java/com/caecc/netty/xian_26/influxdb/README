@@ -1,0 +1,52 @@
+1.全局配置bind-address="192.168.0.224:8086" #The bind address used by the HTTP service.
+2.[http] bind-address="192.168.0.224:8088" #RPC对应的服务地址，用于备份数据通信
+3.[data]  dir = "/opt/influxdbdata/data"  #数据存储位置
+4.[meta] dir = "/opt/influxdbdata/meta" #meta数据和Raft数据库的存储目录
+6.[coordinator] log-queries-after="3s" #满查询日志阈值
+7. precision ms 时间精确到ms   h m s ms毫秒 u微秒 ns纳秒
+8.format json  + json  服务器调试数据用，数据格式化json格式
+9.max-series-per-database = 0
+10. max-values-per-tag = 0
+11.index-version = "tsil"  索引类型，支持千亿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
