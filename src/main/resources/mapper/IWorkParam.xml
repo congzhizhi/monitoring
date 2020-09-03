@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.caecc.dao.IWorkParamDao">
+
+    <resultMap id="workparamMap" type="com.caecc.model.WorkParam">
+        <id property="id" column="id" />
+        <result property="ethIP" column="eth_iP" />
+        <result property="srcIP" column="src_iP" />
+        <result property="srcPort" column="src_port" />
+        <result property="desIP" column="des_iP" />
+        <result property="desPort" column="des_port" />
+        <result property="protocol" column="protocol" />
+        <result property="mode" column="mode" />
+    </resultMap>
+
+
+    <select id="getAllWorkParams" resultMap="workparamMap">
+		select * from weidan.work_param
+	</select>
+
+</mapper>
