@@ -1,5 +1,6 @@
 package com.caecc.netty.xian_26.shentong;
 
+
 import com.caecc.dao.WorkParamDao;
 import com.caecc.model.WorkParam;
 import org.apache.ibatis.io.Resources;
@@ -11,8 +12,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import com.caecc.model.WorkParam;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 /**
- * MySql 会话工厂
+ * @description 数据库连接工厂
+ * @author Cong ZhiZzhi
+ * @date 2020-09-04 10:07
  */
 public final class DBSessionFactory {
     /**
@@ -23,6 +30,7 @@ public final class DBSessionFactory {
     /**
      * MyBatis Sql 会话工厂
      */
+
     static private SqlSessionFactory _sqlSessionFactory;
 
     /**
@@ -38,7 +46,6 @@ public final class DBSessionFactory {
 
         init();
         SqlSession session = openSession();
-
 
 
         List<WorkParam> getAll= openSession().getMapper(WorkParamDao.class).getAllWorkParams();
@@ -71,16 +78,22 @@ public final class DBSessionFactory {
         }
     }
 
-    /**
-     * 创建 MySql 会话
-     *
-     * @return
-     */
+
     static public SqlSession openSession() {
         if (null == _sqlSessionFactory) {
             throw new RuntimeException("_sqlSessionFactory 尚未初始化");
         }
 
         return _sqlSessionFactory.openSession(true);
+    }
+
+    /**
+     * @description 返回一个mapper，注意要释放连接
+     * @author Cong ZhiZzhi
+     * @date 2020-09-04 10:12
+     */
+    public static <T> T getMapper(Class<T>  tClass){
+        return _sqlSessionFactory.openSession().getMapper(tClass);
+
     }
 }

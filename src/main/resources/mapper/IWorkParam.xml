@@ -5,7 +5,7 @@
 
 <mapper namespace="com.caecc.dao.WorkParamDao">
 
-    <resultMap id="workparamMap" type="com.caecc.model.WorkParam">
+    <resultMap id="workparamMap" type="WorkParam">
         <id property="id" column="id" />
         <result property="ethIP" column="eth_iP" />
         <result property="srcIP" column="src_iP" />
@@ -20,5 +20,28 @@
     <select id="getAllWorkParams" resultMap="workparamMap">
 		select * from weidan.work_param
 	</select>
+    
+    <insert id="insert">
+        <selectKey keyColumn="id" resultType="long" keyProperty="id" order="BEFORE">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into weidan.work_param(
+            eth_iP,src_iP,src_port,des_iP,des_port,protocol,mode)
+        values (#(ethIP),#(srcIP),#(srcPort),#(desIP),#(desPort),#(protocol),#(mode))
+    </insert>
 
+    <update id="updateById">
+		update weidan.work_param
+		set user_name = #{userName},
+			user_password = #{userPassword},
+			user_email = #{userEmail},
+			user_info = #{userInfo},
+			head_img = #{headImg, jdbcType=BLOB},
+			create_time = #{createTime, jdbcType=TIMESTAMP}
+		where id = #{id}
+	</update>
+
+    <delete id="deleteById">
+		delete from weidan.work_param where id = #{id}
+	</delete>
 </mapper>

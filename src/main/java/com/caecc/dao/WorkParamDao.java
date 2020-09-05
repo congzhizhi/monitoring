@@ -10,5 +10,8 @@ import java.util.List;
 public interface WorkParamDao {
 
      List<WorkParam> getAllWorkParams();
+     public int insert(WorkParam workParam);
+     public int updateById(WorkParam workParam);
+     public int deleteById(int id);
 
 }
