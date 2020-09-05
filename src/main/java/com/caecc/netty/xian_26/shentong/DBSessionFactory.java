@@ -57,7 +57,7 @@ public final class DBSessionFactory {
      */
     static public void init() {
         try {
-            LOGGER.info("初始化神通数据库连接");
+            LOGGER.info("初始化数据库连接");
             _sqlSessionFactory = (new SqlSessionFactoryBuilder()).build(
                 Resources.getResourceAsStream("MyBatisConfig.xml")
             );
@@ -70,7 +70,7 @@ public final class DBSessionFactory {
                 .execute("SELECT -1");
 
             tempSession.close();
-            LOGGER.info("神通数据库连接测试成功");
+            LOGGER.info("连接测试成功");
         } catch (Exception ex) {
             ex.printStackTrace();
             // 记录错误日志

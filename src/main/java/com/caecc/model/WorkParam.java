@@ -23,42 +23,42 @@ public class WorkParam {
     /**
      * ID
      */
-    private int id;
+    private Integer id;
 
     /**
      * 网卡IP,4字节
      */
-    private  int ethIP;
+    private  Integer ethIP;
 
     /**
      * 源IP,4字节
      */
-    private  int srcIP;
+    private  Integer srcIP;
 
     /**
      * 源端口,2字节
      */
-    private   int  srcPort;
+    private   Integer  srcPort;
 
     /**
      * 目的IP,4字节
      */
-    private  int desIP;
+    private  Integer desIP;
 
     /**
      * 目的端口,2字节
      */
-    private   int  desPort;
+    private   Integer  desPort;
 
     /**
      * 通信协议,1字节
      */
-    private   byte  protocol;
+    private   Byte  protocol;
 
     /**
      * 工作模式,1字节
      */
-    private   byte  mode;
+    private   Byte  mode;
 
 
 

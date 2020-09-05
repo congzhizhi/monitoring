@@ -20,7 +20,50 @@
     <select id="getAllWorkParams" resultMap="workparamMap">
 		select * from weidan.work_param
 	</select>
-    
+
+    <select id="getWorkParamById" resultMap="workparamMap">
+		select * from weidan.work_param where id=#{id}
+	</select>
+
+    <select id="getByConditions" resultMap="workparamMap">
+		select * from weidan.work_param
+        <where>
+            <if test="ethIP != null">
+                and eth_iP = #{ethIP},
+            </if>
+            <if test="srcIP != null">
+                and src_iP = #{srcIP},
+            </if>
+            <if test="srcPort != null">
+                and src_port = #{srcPort},
+            </if>
+            <if test="desIP != null">
+                and des_iP = #{desIP},
+            </if>
+            <if test="desPort != null">
+                and des_port = #{desPort},
+            </if>
+            <if test="protocol != null">
+                and protocol = #{protocol},
+            </if>
+            <if test="mode != null">
+                and mode = #{mode},
+            </if>
+        </where>
+	</select>
+
+
+    <select id="getByIdList" resultMap="workparamMap">
+
+        select *
+        from weidan.work_param
+        where id in
+        <foreach collection="ids" open="(" close=")" separator="," item="id" index="i">
+            #{id}
+        </foreach>
+    </select>
+
+
     <insert id="insert">
         <selectKey keyColumn="id" resultType="long" keyProperty="id" order="BEFORE">
             SELECT LAST_INSERT_ID()
@@ -30,18 +73,77 @@
         values (#(ethIP),#(srcIP),#(srcPort),#(desIP),#(desPort),#(protocol),#(mode))
     </insert>
 
+
+
     <update id="updateById">
 		update weidan.work_param
-		set user_name = #{userName},
-			user_password = #{userPassword},
-			user_email = #{userEmail},
-			user_info = #{userInfo},
-			head_img = #{headImg, jdbcType=BLOB},
-			create_time = #{createTime, jdbcType=TIMESTAMP}
-		where id = #{id}
+        <set>
+            <if test="ethIP != null">
+                eth_iP = #{ethIP},
+            </if>
+            <if test="srcIP != null">
+                src_iP = #{srcIP},
+            </if>
+            <if test="srcPort != null">
+                src_port = #{srcPort},
+            </if>
+            <if test="desIP != null">
+                des_iP = #{desIP},
+            </if>
+            <if test="desPort != null">
+                des_port = #{desPort},
+            </if>
+            <if test="protocol != null">
+                protocol = #{protocol},
+            </if>
+            <if test="mode != null">
+                mode = #{mode},
+            </if>
+            id = #{id}
+        </set>
+        where id = #{id}
 	</update>
+
+
 
     <delete id="deleteById">
 		delete from weidan.work_param where id = #{id}
 	</delete>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>
